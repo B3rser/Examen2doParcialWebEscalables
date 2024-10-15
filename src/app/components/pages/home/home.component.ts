@@ -17,6 +17,14 @@ export class HomeComponent {
     return this.productService.products;
   }
 
+  public get categories(): Set<String> {
+    return this.productService.categories;
+  }
+
+  public filterCategory(category : String) {
+    this.productService.filterCategory(category);
+  }
+
   constructor() {
     this.productService.fetchProducts();
   }

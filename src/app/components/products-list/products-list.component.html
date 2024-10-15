@@ -1,3 +1,16 @@
+<div class="filters">
+  <button mat-button [matMenuTriggerFor]="menu">
+    Categories
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item  (click)="filterProducts('All')" >All</button>
+    <button *ngFor="let category of categories" (click)="filterProducts(category)" mat-menu-item  >{{category}}</button>
+  </mat-menu>
+</div>
+
 <div class="container">
-    <product-card *ngFor="let product of products" [product]="product"></product-card>
+  <product-card
+    *ngFor="let product of products"
+    [product]="product"
+  ></product-card>
 </div>

@@ -1,3 +1,5 @@
 <products-list
   [products]="products"
+  [categories]="categories"
+  (filterProductsEmitter)="filterCategory($event)"
 ></products-list>

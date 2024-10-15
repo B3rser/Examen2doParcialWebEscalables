@@ -10,9 +10,28 @@ export class ProductsService {
   private apiUrl = 'https://fakestoreapi.com/products';
 
   private _products: Product[] = [];
-
+  private _productsShow: Product[] = [];
+  private _categories : Set<String> = new Set();
   public get products(): Product[] {
-    return this._products;
+    return this._productsShow;
+  }
+
+  public get categories() : Set<String>{
+    return this._categories;
+  }
+
+  public getCategories(){
+    this._products.forEach(product => {
+      this.categories.add(product.category);
+    });
+  }
+
+  public filterCategory(category : String){
+    if( category === "All"){
+      this._productsShow = this._products;
+      return;
+    }
+    this._productsShow = this._products.filter((product) => product.category === category);
   }
 
   public searchProduct(title: string, id: number): Promise<Product> {
@@ -51,6 +70,8 @@ export class ProductsService {
     this.http.get<Product[]>(this.apiUrl).subscribe({
       next: (response) => {
         this._products = response;
+        this._productsShow = response;
+        this.getCategories()
       },
       error: (error) => {
         console.log(error);

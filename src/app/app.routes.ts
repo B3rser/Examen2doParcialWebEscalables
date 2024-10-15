@@ -5,7 +5,7 @@ import { ProductDetailsComponent } from './components/pages/product-details/prod
 
 export const routes: Routes = [
     { path: 'home',component: HomeComponent},
-    { path: ':productIDC', component: ProductDetailsComponent},
+    { path: 'product', component: ProductDetailsComponent},
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'not-found', component: NotFoundComponent },
     { path: '**', redirectTo: 'not-found', pathMatch: 'full' },

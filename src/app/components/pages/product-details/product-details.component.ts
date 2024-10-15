@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from '../../../interfaces/product';
 import { ProductsService } from '../../../services/products.service';
 import { NgIf } from '@angular/common';
@@ -21,29 +21,31 @@ export class ProductDetailsComponent {
     category: '',
     image: '',
   };
-  public show : boolean = false;
+  public show: boolean = false;
 
   private productService = inject(ProductsService);
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
     var productTitle = null;
     var productId = 0;
-    this.route.paramMap.subscribe((params) => {
-      productTitle = params.get('productIDC');
-    });
 
     this.route.queryParams.subscribe((queryParams) => {
       productId = queryParams['id'];
+      productTitle = queryParams['title'];
     });
 
     this.productService
       .searchProduct(productTitle ? productTitle : '', productId)
       .then((product) => {
+        if(product.id === -1){
+          this.router.navigate(['/not-found']);
+        }
         this.product = product;
         this.show = true;
       })
       .catch((error) => {
         console.error('Error buscando el producto:', error);
+        this.router.navigate(['/not-found']);
         this.product = {
           id: -1,
           title: '',
