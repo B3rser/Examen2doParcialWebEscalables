@@ -1,0 +1,20 @@
+<mat-card class="card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>{{product.title}}</mat-card-title>
+    <mat-card-subtitle>${{product.price}}</mat-card-subtitle>
+  </mat-card-header>
+  <img
+    mat-card-image
+    class="image"
+    [src]="product.image"
+    [alt]="product.title"
+  />
+  <!-- <mat-card-content>
+    <p>
+      {{product.description}}
+    </p>
+  </mat-card-content> -->
+  <mat-card-actions class="actions">
+    <button mat-button [routerLink]="['/', product.title]" [queryParams]="{ id: product.id }" routerLinkActive="router-link-active">View</button>
+  </mat-card-actions>
+</mat-card>

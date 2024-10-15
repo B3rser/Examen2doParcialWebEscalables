@@ -1,0 +1,11 @@
+<div *ngIf="show" class="container">
+  <div class="product-image">
+    <img [src]="product.image" alt="{{ product.title }}" />
+  </div>
+  <div class="product-info">
+    <h1 class="product-title">{{ product.title }}</h1>
+    <p class="product-price">${{ product.price }}</p>
+    <p class="product-description">{{ product.description }}</p>
+    <button mat-raised-button>Buy</button>
+  </div>
+</div>

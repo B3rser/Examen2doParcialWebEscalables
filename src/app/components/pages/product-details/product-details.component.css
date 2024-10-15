@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  width: 80vw;
+  margin: 50px auto;
+}
+
+.product-image {
+  flex: 1;
+  padding: 20px;
+}
+
+.product-image img {
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
+}
+
+.product-info {
+  flex: 1;
+  padding: 20px;
+}
+
+.product-title {
+  font-size: 50px;
+}
+
+.product-price {
+  font-size: 40px;
+  margin: 10px 0;
+}
+
+.product-description {
+  font-size: 20px;
+  margin: 10px 0;
+}
